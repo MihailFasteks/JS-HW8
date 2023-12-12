@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Extended Date</h1>
+        <p id="formattedDate"></p>
+        <p id="isFuture"></p>
+        <p id="isLeapYear"></p>
+        <p id="nextDate"></p>
+    </div>
+    <script>
+        class ExtendedDate extends Date {
+    constructor(...argmnts) {
+        super(...argmnts);
+    }
+
+    formatDateText() {
+        let monthNames = [
+            "Январь", "Февраль", "Март",
+            "Апрель", "Май", "Июнь",
+            "Июль", "Август", "Сентябрь",
+            "Октябрь", "Ноябрь", "Декабрь"
+        ];
+
+        let day = this.getDate();
+        let monthIndex = this.getMonth();
+        let year = this.getFullYear();
+
+        return `${day} ${monthNames[monthIndex]} ${year}`;
+    }
+
+    isFuture() {
+        let currentDate = new Date();
+        return this > currentDate;
+    }
+
+    isLeapYear() {
+        let year = this.getFullYear();
+        return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+    }
+
+    getNextDate() {
+        let nextDate = new Date(this);
+        nextDate.setDate(nextDate.getDate() + 1);
+        return nextDate;
+    }
+}
+
+// Создание объекта ExtendedDate
+let extendedDate = new ExtendedDate();
+
+// Вызов методов и вывод результатов
+document.getElementById("formattedDate").textContent = `Отформатированный текст: ${extendedDate.formatDateText()}`;
+document.getElementById("isFuture").textContent = `Дата будущая?: ${extendedDate.isFuture()}`;
+document.getElementById("isLeapYear").textContent = `Год високосный?: ${extendedDate.isLeapYear()}`;
+document.getElementById("nextDate").textContent = `Следующая дата: ${extendedDate.getNextDate().toLocaleDateString()}`;
+
+        
+    </script>
+</body>
+</html>

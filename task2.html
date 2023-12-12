@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Marker{
+            color;
+            quantity;
+constructor(color, quantity){
+    this.color=color;
+    this.quantity=quantity;
+}
+            print(text){
+                for (let char of text){
+                    if(char!==' '){
+                this.quantity-=0.5;
+                if(this.quantity<=0){
+                    document.write("<br />Marker is empty");
+                    break;
+                }else{
+                    document.write(`<span style="color: ${this.color};">${char}</span>`);
+                }
+                    }else{
+                        document.write(' ');
+                    }
+        }
+                }
+          
+        }
+        class ReFill extends Marker{
+
+fill(v){
+    this.quantity=v;
+    document.write("<br />Marker was filled sucessful!");
+}
+        }
+
+        marker1=new ReFill("red", 5);
+        marker1.print("Marker is writing now!");
+        marker1.fill();
+
+       
+    </script>
+</body>
+</html>
